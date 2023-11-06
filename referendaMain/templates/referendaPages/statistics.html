@@ -1,0 +1,97 @@
+{% load static %}
+<br>
+<div class="d-flex justify-content-center">
+    <h4>Results</h4>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+    <div class="row w-100 p-3">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="stats_block">
+                    <div id="yes-votes" class="card-header">
+                        <h6 class="card-title">Yes</h6>
+                    </div>
+                    <div class="card-body">
+                        <h7 class="card-title">{{ yes_votes }}</h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="stats_block">
+                    <div id="no-votes" class="card-header">
+                        <h6 class="card-title">No</h6>
+                    </div>
+                    <div class="card-body">
+                        <h7 class="card-title">{{ no_votes }}</h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="stats_block">
+                    <div id="total_votes" class="card-header">
+                        <h6 class="card-title">Total</h6>
+                    </div>
+                    <div class="card-body">
+                        <h7 class="card-title">{{ total_votes }}</h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="stats_block" >
+                    <div id="unvoted" class="card-header">
+                        <h6 class="card-title">Unvoted</h6>
+                    </div>
+                    <div class="card-body">
+                        <h7 class="card-title">{{ unvoted }}</h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="d-flex justify-content-center" id="piechart">
+    
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    var vote_results = {{ vote_results|safe|safe }};
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+  
+    function drawChart() {
+      
+        vote_results.unshift(["Choice", "Vote Count"]);
+        var data = google.visualization.arrayToDataTable(vote_results);
+  
+        var options = {
+            width: 550,
+            height: 300,
+            colors: ['#90ff94','#ff5c5c'],
+        };
+  
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        google.visualization.events.addListener(chart, 'ready', function () {
+            var svg = document.getElementById('piechart').getElementsByTagName('svg')[0];
+            var textElements = svg.getElementsByTagName('text');
+
+            for (var i = 0; i < textElements.length; i++) {
+                if (textElements[i].textContent.includes('%')) {
+                    textElements[i].classList.add('pie-chart-text');
+                }
+            }
+        });
+        chart.draw(data, options);
+    }
+</script>

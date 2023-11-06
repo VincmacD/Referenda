@@ -1,0 +1,118 @@
+
+.footer{
+    color: #FFF !important;
+}
+body{
+background-color: #2e3338 !important;
+}
+
+.content-wrapper{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(237, 237, 237);
+}
+
+.referendum_card {
+width: 1050px;
+margin-bottom: auto;
+background: #ffffff;
+position: relative;
+display: flex;
+justify-content: center;
+flex-direction: column;
+padding: 20px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border-radius: 5px;
+}
+
+#referendum-title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.pull-right{
+    
+    float: right;
+}
+.top-item-info{
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.line{
+    border-left: 2px solid rgb(0, 0, 0);
+    height: 10px; 
+}
+
+#referendum_title{
+    width: 200px;
+    font-size: x-large;
+}
+
+.ref-info{
+    font-size: small;
+}
+
+#ref-description {
+    padding-top: 30px
+}
+
+#yes-votes{
+    background-color: #90ff94;
+}
+
+#no-votes{
+    background-color: #ff5c5c;
+}
+
+#unvoted{
+    background-color: #d3d2d2;
+}
+
+#total_votes{
+    background-color: #76b1f8;
+}
+
+#stats_block{
+    border-width: thin;
+    border-color: #747474;
+   
+}
+
+
+.pie-chart-text {
+    fill: #000000; /* Change 'red' to your desired font color */
+}
+
+.box {
+    float:right;
+    height: 20px;
+    width: 20px;
+    border: 0.5px solid rgb(174, 174, 174);
+    clear: both;
+    border-radius: 25px;
+    }
+
+.green-box {
+    background-color: #32a852;
+}
+
+.red-box {
+    background-color: rgb(255, 32, 32);
+}
+
+#spanR {
+    margin-left: 75px;
+} 
+.l-bold{
+    font-weight: bold;
+}
+.hello-msg{
+font-size: 18px;
+color: #fff;
+margin-right:20px;
+}

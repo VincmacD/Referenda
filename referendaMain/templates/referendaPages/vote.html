@@ -1,0 +1,51 @@
+{% extends 'referendaPages/main.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="referendum_card">
+                <div class="d-flex justify-content-left">
+                    <h3 id="referendum-title">{{ referendum.title }}</h3>
+                </div>
+
+                <div>
+                    <span>
+                        <span class="ref-info"><b>Date published:</b> {{ referendum.date_published }}</span>&emsp;&emsp;
+                        <span class="ref-info"><b>Starting date:</b> {{ referendum.date_available }}</span>&emsp;&emsp;
+                        <span class="ref-info"><b>Expiry date:</b> {{ referendum.date_expired }}</span>
+                    </span>
+                </div>
+
+                <div id="ref-description">
+                    <h5>Question:</h5>
+                    <p>{{ referendum.description }}</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <hr class="my-0 py-2">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            {% for choice in referendum.choices.all %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="choice_id" id="{{ choice.id }}" value="{{ choice.id }}">
+                                <label class="form-check-label" for="{{ choice.id }}">
+                                    {{ choice.name }}
+                                </label>
+                                <input type="hidden" name="referendum_id" id="{{ referendum.id }}" value="{{ referendum.id }}">
+                                <input type="hidden" name="voter_id" id="{{ user.voter.id }}" value="{{ user.voter.id }}">
+                            </div>
+                            {% endfor %}
+                            <hr class="my-3 py-1">
+                            <div class="d-flex justify-content-left mt-3 login_container">
+                                <input id="cast_vote_button" class="btn btn-success" type="submit" value="Cast vote">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

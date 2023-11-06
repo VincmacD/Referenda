@@ -1,0 +1,64 @@
+{% extends 'referendaPages/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="referendum_card">
+                <div class="d-flex justify-content-center">
+                    <h3 id="referendum-title">Referendums</h3>
+                </div>
+                <ul class="list-group">
+                    {% for referendum in referendums %}
+                    <li class="list-group-item">
+                        <div class="top-item-info">
+                            <strong id="referendum_title">{{ referendum.title }}</strong>
+                            <div class="pull-right">
+                                <a href="{% url 'vote' id=referendum.id %}" id="vote-button" class="btn btn-primary" data-start-date="{{ referendum.date_available }}" data-expiry-date="{{ referendum.date_expired }}">Vote</a> &nbsp;
+                                <a href="{% url 'results' id=referendum.id %}" class="btn btn-success">View Results</a> &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span class="ref-info"><b>Date published:</b> {{ referendum.date_published }}</span>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class='box {% if current_date >= referendum.date_available and current_date <= referendum.date_expired %}green-box{% else %}red-box{% endif %}'></div>
+                                    </div>
+                                    <div class="col">
+                                        <span class="ref-info">
+                                            {% if current_date >= referendum.date_available and current_date <= referendum.date_expired %}
+                                                <b>Available</b>  
+                                            {% else %}
+                                                <b>Unavailable</b>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="ref-info">
+                                    <b>Starting date:</b> {{ referendum.date_available }}
+                                </span>
+                            </div>
+                            <div class="col">
+                                <span class="ref-info">
+                                    <b>Expiry date:</b> {{ referendum.date_expired }}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/displayButton.js'%}"></script>
+
+{% endblock %}
