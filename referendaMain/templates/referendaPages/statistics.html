@@ -47,7 +47,7 @@
 
         <div class="col">
             <div class="col-md">
-                <div class="card text-center text-black mb-3" id="stats_block" >
+                <div class="card text-center text-black mb-3" id="stats_block">
                     <div id="unvoted" class="card-header">
                         <h6 class="card-title">Unvoted</h6>
                     </div>
@@ -62,25 +62,25 @@
 <br>
 
 <div class="d-flex justify-content-center" id="piechart">
-    
+
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-    var vote_results = {{ vote_results|safe|safe }};
+    var vote_results = {{ vote_results| safe | safe }};
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
-  
+
     function drawChart() {
-      
+
         vote_results.unshift(["Choice", "Vote Count"]);
         var data = google.visualization.arrayToDataTable(vote_results);
-  
+
         var options = {
             width: 550,
             height: 300,
-            colors: ['#90ff94','#ff5c5c'],
+            colors: ['#90ff94', '#ff5c5c'],
         };
-  
+
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         google.visualization.events.addListener(chart, 'ready', function () {
             var svg = document.getElementById('piechart').getElementsByTagName('svg')[0];

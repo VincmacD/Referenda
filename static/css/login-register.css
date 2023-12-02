@@ -71,10 +71,24 @@ img{
     justify-content: center;
 }
 
-#messages{
-    background-color: grey;
-    color: #fff;
-    padding: 10px;
-    margin-top: 10px;
-    text-align: center;
+#messageError {
+    width: 100%;
+    background: #ffa4a4;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#messageSuccess {
+    width: 100%;
+    background: #a7ffa4;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

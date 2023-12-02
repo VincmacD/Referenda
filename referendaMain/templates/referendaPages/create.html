@@ -4,6 +4,20 @@
 <div class="content-wrapper">
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="messageError">
+                <p>{{ message }}</p>
+            </div>
+            {% elif message.tags == 'success' %}
+            <div class="messageSuccess">
+                <p>{{ message }}</p>
+            </div>
+            {% else %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="d-flex justify-content-center h-100">
             <div class="referendum_card">
                 <div class="d-flex justify-content-center">
                     <h3 id="referendum-title">Create Referendum</h3>
@@ -13,22 +27,31 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label class="l-bold" for="title">Title:</label>
-                        <input type="text" name="title" id="title" class="form-control">
+                        <input type="text" name="title" id="title" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label class="l-bold" for="description">Description:</label>
-                        <textarea name="description" id="description" class="form-control" rows="4"></textarea>
+                        <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="l-bold" for="choices">Choices:</label>
+                        <select name="choices" id="choices" class="form-control" multiple>
+                            {% for choice in all_choices %}
+                            <option value="{{ choice.id }}">{{ choice.name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label class="l-bold" for="date_available">Starting Date:</label>
-                        <input type="date" name="date_available" id="date_available" class="form-control">
+                        <input type="date" name="date_available" id="date_available" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label class="l-bold" for="date_expired">Expiry Date:</label>
-                        <input type="date" name="date_expired" id="date_expired" class="form-control">
+                        <input type="date" name="date_expired" id="date_expired" class="form-control" required>
                     </div>
 
                     <button type="submit" class="btn btn-success">Create</button>
